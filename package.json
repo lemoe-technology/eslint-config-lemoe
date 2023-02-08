@@ -1,0 +1,49 @@
+{
+  "name": "eslint-config-lemoe",
+  "version": "0.0.1",
+  "description": "Lemoe 的 ESLint 配置",
+  "homepage": "https://github.com/lemoe-technology/eslint-config-lemoe",
+  "bugs": {
+    "url": "https://github.com/lemoe-technology/eslint-config-lemoe/issues"
+  },
+  "license": "MIT",
+  "author": "Lemoe",
+  "repository": "github:lemoe-technology/eslint-config-lemoe.git",
+  "scripts": {
+    "lint": "eslint --cache --ext .js --ignore-path .gitignore ."
+  },
+  "dependencies": {
+    "@rushstack/eslint-patch": "^1.2.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "eslint-plugin-vue": "^9.9.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.4.2",
+    "@commitlint/config-conventional": "^17.4.2",
+    "eslint": "^8.34.0",
+    "lint-staged": "^13.1.1",
+    "prettier": "^2.8.4",
+    "simple-git-hooks": "^2.8.1"
+  },
+  "peerDependencies": {
+    "eslint": ">=8.0.0"
+  },
+  "exports": {
+    ".": "./configs/base.js",
+    "./prettier": "./configs/prettier.js",
+    "./recommended": "./configs/recommended.js",
+    "./vue-recommended": "./configs/vue-recommended.js"
+  },
+  "lint-staged": {
+    "*.js": [
+      "pnpm lint"
+    ]
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged",
+    "commit-msg": "pnpm commitlint --edit"
+  }
+}
